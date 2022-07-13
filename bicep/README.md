@@ -31,3 +31,9 @@ az aks get-versions --location japaneast --output table
 # deploy aks and acr
 az deployment group create -f deploy-aks.bicep --resource-group $RESOURCE_GROUP
 ```
+
+### Deploy Flux extension and its configrations
+
+```shell
+az deployment group create -f deploy-flux.bicep --resource-group $RESOURCE_GROUP
+```
