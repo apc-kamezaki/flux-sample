@@ -36,4 +36,7 @@ az deployment group create -f deploy-aks.bicep --resource-group $RESOURCE_GROUP
 
 ```shell
 az deployment group create -f deploy-flux.bicep --resource-group $RESOURCE_GROUP
+
+az deployment group create -f deploy-flux-config.bicep --resource-group $RESOURCE_GROUP \
+    --parameters @flux-parameters.json
 ```

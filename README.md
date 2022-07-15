@@ -16,6 +16,8 @@ az upgrade
 Enable some azure service providers
 
 ```shell
+az feature register --namespace Microsoft.ContainerService --name AKS-ExtensionManager
+
 az provider register --namespace Microsoft.Kubernetes
 az provider register --namespace Microsoft.ContainerService
 az provider register --namespace Microsoft.KubernetesConfiguration
@@ -39,5 +41,15 @@ Microsoft.KubernetesConfiguration  RegistrationRequired  Registered
 
 ## Deploy AKS and other azure resources
 
-## 
+## Debug
 
+Please install flux cli for debuging. [How to install flux cli](https://fluxcd.io/docs/cmd/)
+
+```yaml
+# get GitRepository resources
+kubectl get GitRepository -A
+
+# get Kustomization resources
+kubectl get Kustomization -A
+
+```
