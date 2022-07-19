@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: sample-apps
+spec:
+  interval: 5m0s
+  url: https://github.com/apc-kamezaki/sample-apps
+  ref:
+    branch: main

@@ -48,6 +48,11 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-0
         syncIntervalInSeconds: syncIntervalInSeconds
         prune: true
       }
+      apps: {
+        path: './apps/staging'
+        syncIntervalInSeconds: syncIntervalInSeconds
+        prune: true
+      }
     }
   }
 }
