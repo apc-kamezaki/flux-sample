@@ -4,6 +4,7 @@ namespace: flux-config
 resources:
 - ../sources
 - ../base/timefeed
+- ../base/aggregator
 patches:
 - target:
     group: kustomize.toolkit.fluxcd.io
@@ -16,3 +17,11 @@ patches:
     - op: replace
       path: /spec/targetNamespace
       value: staging
+- target:
+    group: kustomize.toolkit.fluxcd.io
+    kind: Kustomization
+    name: flux-config-aggregator
+  patch: |-
+    - op: replace
+      path: /spec/path
+      value: ./deploy/aggregator/staging 
