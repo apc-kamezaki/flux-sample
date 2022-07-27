@@ -54,6 +54,9 @@ USER_NAME=$(az ad sp list --display-name $SERVICE_PRINCIPAL_NAME --query "[].app
 
 kubectl create namespace flux-config
 
+
+# authentication for helm registry
+# first, create secret
 kubectl create secret docker-registry helmrepocred \
  --namespace flux-config \
  --docker-server=$ACR_NAME.azurecr.io \
@@ -65,6 +68,25 @@ flux create source helm acr-helm \
   --url=oci://$ACR_NAME.azurecr.io/helm \
   --namespace flux-config \
   --secret-ref=helmrepocred
+
+# authentication for github repository
+# how to create github PAT('Personal access token')
+# see : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
+GITHUB_USER="Put your account"
+GITHUB_TOKEN="Put your PAT here"
+kubectl create secret generic sampleappscred \
+ --namespace flux-config \
+ --from-literal=username="$GITHUB_USER" \
+ --from-literal=password="$GITHUB_TOKEN"
+
+flux create source git sample-apps-private \
+  --url=<put your private repo> \
+  --namespace flux-config \
+  --branch=main \
+  --secret-ref=sampleappscred
+
+
 ```
 
 ### Deply flux configuration

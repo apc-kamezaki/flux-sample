@@ -17,6 +17,10 @@ patches:
     - op: replace
       path: /spec/targetNamespace
       value: staging
+    # delete below if you want to use public lipository
+    - op: replace
+      path: /spec/sourceRef/name
+      value: sample-apps-private
 - target:
     group: kustomize.toolkit.fluxcd.io
     kind: Kustomization
@@ -24,4 +28,9 @@ patches:
   patch: |-
     - op: replace
       path: /spec/path
-      value: ./deploy/aggregator/staging 
+      value: ./deploy/aggregator/staging
+    # delete below if you want to use public lipository
+    - op: replace
+      path: /spec/sourceRef/name
+      value: sample-apps-private
+ 
